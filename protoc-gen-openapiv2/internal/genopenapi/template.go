@@ -19,6 +19,7 @@ import (
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/internal/casing"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/internal/descriptor"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	openapi_options "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -2145,6 +2146,7 @@ func getFileOpenAPIOption(reg *descriptor.Registry, file *descriptor.File) (*ope
 	if err != nil {
 		return nil, err
 	}
+	opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 	if opts != nil {
 		return opts, nil
 	}
@@ -2152,6 +2154,7 @@ func getFileOpenAPIOption(reg *descriptor.Registry, file *descriptor.File) (*ope
 	if !ok {
 		return nil, nil
 	}
+	opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 	return opts, nil
 }
 
