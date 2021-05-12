@@ -2146,8 +2146,8 @@ func getFileOpenAPIOption(reg *descriptor.Registry, file *descriptor.File) (*ope
 	if err != nil {
 		return nil, err
 	}
-	opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 	if opts != nil {
+		opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 		return opts, nil
 	}
 	opts, ok := reg.GetOpenAPIFileOption(*file.Name)
