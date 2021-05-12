@@ -19,7 +19,6 @@ import (
 	"github.com/golang/glog"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/internal/casing"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/internal/descriptor"
-	"github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	openapi_options "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -1290,6 +1289,7 @@ func applyTemplate(p param) (*openapiSwaggerObject, error) {
 			Title:   *p.File.Name,
 			Version: "version not set",
 		},
+		Schemes: []string{"HTTP", "HTTPS", "WS", "WSS"},
 	}
 
 	// Loops through all the services and their exposed GET/POST/PUT/DELETE definitions
@@ -2147,14 +2147,12 @@ func getFileOpenAPIOption(reg *descriptor.Registry, file *descriptor.File) (*ope
 		return nil, err
 	}
 	if opts != nil {
-		opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 		return opts, nil
 	}
 	opts, ok := reg.GetOpenAPIFileOption(*file.Name)
 	if !ok {
 		return nil, nil
 	}
-	opts.Schemes = []openapi_options.Scheme{options.Scheme_HTTP, options.Scheme_HTTPS, options.Scheme_WS, options.Scheme_WSS}
 	return opts, nil
 }
 
