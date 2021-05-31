@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package grpc.gateway.internal.descriptor.openapiconfig;
 
-option go_package = "github.com/grpc-ecosystem/grpc-gateway/v2/internal/descriptor/openapiconfig";
+option go_package = "github.com/longXboy/grpc-gateway/v2/internal/descriptor/openapiconfig";
 
 import "protoc-gen-openapiv2/options/openapiv2.proto";
 

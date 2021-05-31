@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/grpc-ecosystem/grpc-gateway/v2/internal/codegenerator"
+	"github.com/longXboy/grpc-gateway/v2/internal/codegenerator"
 )
 
 func Test_Gen(t *testing.T) {

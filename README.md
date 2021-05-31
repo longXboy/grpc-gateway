@@ -68,8 +68,8 @@ to track the versions of the following executable packages:
 package tools
 
 import (
-    _ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway"
-    _ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2"
+    _ "github.com/longXboy/grpc-gateway/v2/protoc-gen-grpc-gateway"
+    _ "github.com/longXboy/grpc-gateway/v2/protoc-gen-openapiv2"
     _ "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
     _ "google.golang.org/protobuf/cmd/protoc-gen-go"
 )
@@ -79,8 +79,8 @@ Run `go mod tidy` to resolve the versions. Install by running
 
 ```sh
 $ go install \
-    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-grpc-gateway \
-    github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
+    github.com/longXboy/grpc-gateway/v2/protoc-gen-grpc-gateway \
+    github.com/longXboy/grpc-gateway/v2/protoc-gen-openapiv2 \
     google.golang.org/protobuf/cmd/protoc-gen-go \
     google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
@@ -337,7 +337,7 @@ Make sure that your `$GOBIN` is in your `$PATH`.
      "net/http"
 
      "github.com/golang/glog"
-     "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+     "github.com/longXboy/grpc-gateway/v2/runtime"
      "google.golang.org/grpc"
 
      gw "github.com/yourorg/yourrepo/proto/gen/go/your/service/v1/your_service"  // Update

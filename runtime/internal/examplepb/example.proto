@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/grpc-ecosystem/grpc-gateway/v2/runtime/internal/examplepb";
+option go_package = "github.com/longXboy/grpc-gateway/v2/runtime/internal/examplepb";
 package grpc.gateway.runtime.internal.examplepb;
 
 import "google/protobuf/empty.proto";
