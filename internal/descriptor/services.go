@@ -41,9 +41,9 @@ func (r *Registry) loadServices(file *File) error {
 				optsList = append(optsList, defaultOpts)
 			} else {
 				optsList = r.LookupExternalHTTPRules((&Method{Service: svc, MethodDescriptorProto: md}).FQMN())
-			}
-			if opts != nil {
-				optsList = append(optsList, opts)
+				if opts != nil {
+					optsList = append(optsList, opts)
+				}
 			}
 			if len(optsList) == 0 {
 				if r.generateUnboundMethods {
