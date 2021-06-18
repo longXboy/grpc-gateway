@@ -107,6 +107,8 @@ type Registry struct {
 	// RPC methods that have no HttpRule annotation.
 	generateUnboundMethods bool
 
+	generateRPCMethods bool
+
 	// omitPackageDoc, if false, causes a package comment to be included in the generated code.
 	omitPackageDoc bool
 
@@ -556,6 +558,11 @@ func (r *Registry) SetWarnOnUnboundMethods(warn bool) {
 // SetGenerateUnboundMethods sets generateUnboundMethods
 func (r *Registry) SetGenerateUnboundMethods(generate bool) {
 	r.generateUnboundMethods = generate
+}
+
+// SetGenerateRPCMethods sets generateRPCMethods
+func (r *Registry) SetGenerateRPCMethods(rpc bool) {
+	r.generateRPCMethods = rpc
 }
 
 // SetOmitPackageDoc controls whether the generated code contains a package comment (if set to false, it will contain one)

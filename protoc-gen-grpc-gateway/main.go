@@ -34,6 +34,7 @@ var (
 	versionFlag                = flag.Bool("version", false, "print the current version")
 	warnOnUnboundMethods       = flag.Bool("warn_on_unbound_methods", false, "emit a warning message if an RPC method has no HttpRule annotation")
 	generateUnboundMethods     = flag.Bool("generate_unbound_methods", false, "generate proxy methods even for RPC methods that have no HttpRule annotation")
+	generateRPCMethods         = flag.Bool("generate_rpc_methods", false, "generate swagger metadata even for RPC methods without HttpRule annotation")
 )
 
 // Variables set by goreleaser at build time
@@ -142,5 +143,6 @@ func applyFlags(reg *descriptor.Registry) error {
 	reg.SetOmitPackageDoc(*omitPackageDoc)
 	reg.SetWarnOnUnboundMethods(*warnOnUnboundMethods)
 	reg.SetGenerateUnboundMethods(*generateUnboundMethods)
+	reg.SetGenerateRPCMethods(*generateRPCMethods)
 	return reg.SetRepeatedPathParamSeparator(*repeatedPathParamSeparator)
 }

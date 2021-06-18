@@ -12,11 +12,12 @@ type Generator struct {
 }
 
 // Gen generates openapi v2 json content
-func (g *Generator) Gen(req *pluginpb.CodeGeneratorRequest) (*pluginpb.CodeGeneratorResponse, error) {
+func (g *Generator) Gen(req *pluginpb.CodeGeneratorRequest, onlyRPC bool) (*pluginpb.CodeGeneratorResponse, error) {
 	reg := descriptor.NewRegistry()
 	reg.SetUseJSONNamesForFields(true)
 	reg.SetRecursiveDepth(1024)
 	reg.SetMergeFileName("apidocs")
+	reg.SetGenerateRPCMethods(onlyRPC)
 	if err := reg.SetRepeatedPathParamSeparator("csv"); err != nil {
 		return nil, err
 	}

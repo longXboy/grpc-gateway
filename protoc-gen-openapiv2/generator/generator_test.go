@@ -20,7 +20,7 @@ func Test_Gen(t *testing.T) {
 	}
 	var g Generator
 
-	resp, err := g.Gen(req)
+	resp, err := g.Gen(req, false)
 	if err != nil {
 		t.Fatal(err)
 	}
