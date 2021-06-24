@@ -145,8 +145,18 @@ func NewRegistry() *Registry {
 
 // Load loads definitions of services, methods, messages, enumerations and fields from "req".
 func (r *Registry) Load(req *pluginpb.CodeGeneratorRequest) error {
+	var profofiles []*descriptorpb.FileDescriptorProto
+	registry := map[string]struct{}{}
+	for _, f := range req.ProtoFile {
+		if _, ok := registry[f.GetName()]; !ok {
+			registry[f.GetName()] = struct{}{}
+			profofiles = append(profofiles, f)
+		}
+	}
+	req.ProtoFile = profofiles
 	gen, err := protogen.Options{}.New(req)
 	if err != nil {
+		fmt.Println("New err:", err)
 		return err
 	}
 	// Note: keep in mind that this might be not enough because
