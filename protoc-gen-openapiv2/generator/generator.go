@@ -9,15 +9,66 @@ import (
 
 // Generator is openapi v2 generator
 type Generator struct {
+	reg *descriptor.Registry
+}
+
+type Option func(gen *Generator)
+
+// UseJSONNamesForFields. if disabled, the original proto name will be used for generating OpenAPI definitions
+func UseJSONNamesForFields(b bool) Option {
+	return func(gen *Generator) {
+		gen.reg.SetUseJSONNamesForFields(b)
+	}
+}
+
+// RecursiveDepth. maximum recursion count allowed for a field type
+func RecursiveDepth(depth int) Option {
+	return func(gen *Generator) {
+		gen.reg.SetRecursiveDepth(depth)
+	}
+}
+
+// EnumsAsInts. whether to render enum values as integers, as opposed to string values
+func EnumsAsInts(b bool) Option {
+	return func(gen *Generator) {
+		gen.reg.SetEnumsAsInts(b)
+	}
+}
+
+// MergeFileName. target OpenAPI file name prefix after merge
+func MergeFileName(name string) Option {
+	return func(gen *Generator) {
+		gen.reg.SetMergeFileName(name)
+	}
+}
+
+// DisableDefaultErrors. if set, disables generation of default errors. This is useful if you have defined custom error handling
+func DisableDefaultErrors(b bool) Option {
+	return func(gen *Generator) {
+		gen.reg.SetDisableDefaultErrors(b)
+	}
+}
+
+func NewGenerator(options ...Option) *Generator {
+	gen := &Generator{
+		reg: descriptor.NewRegistry(),
+	}
+	gen.reg.SetUseJSONNamesForFields(true)
+	gen.reg.SetRecursiveDepth(1024)
+	gen.reg.SetMergeFileName("apidocs")
+	gen.reg.SetDisableDefaultErrors(true)
+	for _, o := range options {
+		o(gen)
+	}
+	return gen
 }
 
 // Gen generates openapi v2 json content
 func (g *Generator) Gen(req *pluginpb.CodeGeneratorRequest, onlyRPC bool) (*pluginpb.CodeGeneratorResponse, error) {
-	reg := descriptor.NewRegistry()
-	reg.SetUseJSONNamesForFields(true)
-	reg.SetRecursiveDepth(1024)
-	reg.SetMergeFileName("apidocs")
-	reg.SetGenerateRPCMethods(onlyRPC)
+	reg := g.reg
+	if reg == nil {
+		reg = NewGenerator().reg
+	}
 	if err := reg.SetRepeatedPathParamSeparator("csv"); err != nil {
 		return nil, err
 	}
