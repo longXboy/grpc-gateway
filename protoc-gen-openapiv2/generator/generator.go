@@ -69,6 +69,7 @@ func (g *Generator) Gen(req *pluginpb.CodeGeneratorRequest, onlyRPC bool) (*plug
 	if reg == nil {
 		reg = NewGenerator().reg
 	}
+	reg.SetGenerateRPCMethods(onlyRPC)
 	if err := reg.SetRepeatedPathParamSeparator("csv"); err != nil {
 		return nil, err
 	}
@@ -90,7 +91,6 @@ func (g *Generator) Gen(req *pluginpb.CodeGeneratorRequest, onlyRPC bool) (*plug
 		}
 		targets = append(targets, f)
 	}
-
 	out, err := gen.Generate(targets)
 	if err != nil {
 		return nil, err
