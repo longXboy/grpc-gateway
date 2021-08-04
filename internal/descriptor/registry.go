@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/golang/glog"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	"github.com/longXboy/grpc-gateway/v2/internal/codegenerator"
 	"github.com/longXboy/grpc-gateway/v2/internal/descriptor/openapiconfig"
-	"github.com/longXboy/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/types/descriptorpb"
