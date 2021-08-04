@@ -11,10 +11,10 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	openapi_options "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/longXboy/grpc-gateway/v2/internal/descriptor"
 	"github.com/longXboy/grpc-gateway/v2/internal/descriptor/openapiconfig"
 	"github.com/longXboy/grpc-gateway/v2/internal/httprule"
-	"github.com/longXboy/grpc-gateway/v2/runtime"
 	"google.golang.org/genproto/googleapis/api/annotations"
 	"google.golang.org/genproto/protobuf/field_mask"
 	"google.golang.org/protobuf/proto"
